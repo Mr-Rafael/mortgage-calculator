@@ -8,18 +8,43 @@ Useful tools for mortgage-related calculations:
 
 ## Program commands:
 
-1. Create and save a new mortgage (**No initial parameters**).
-    1. Ask user questions about the mortgage: Name, Total Price, Down Payment, Interest Rate, Other expenses.
-    1. Store the mortgage information in a file (JSON Format)
+### Create a Mortgage
 
-1. Edit a mortgage (**Input**: *Mortgage name*).
-    1. Go one by one through all the fields. If user enters information, the field is updated. If left blank, they stay the same.
+Creates a new Mortgage, and saves it as a .json file. The mortgage can then be used to make a payment plan.
 
-1. View mortgage information (**Input**: *Mortgage name*).
-    1. Show all the mortgage information in a readable format.
+Just run:
 
-1. Display all mortgages in the folder (**No input**).
-    1. Displays name and basic information on saved mortgages.
+```
+python3 mortgage-calculator create
+```
+
+And the program will ask you the necessary information (name, total amount, down payment, interest rate, etc.).
+
+### Edit a Mortgage
+
+Edit the data of a Mortgage. Run:
+
+```
+python3 mortgage-calculator <mortgage name>
+```
+
+The program will run you through all the fields. You can either enter a new value to update it, or just press enter to leave it as it is.
+
+### View a Mortgage
+
+Prints the mortgage information in a readable format.
+
+```
+python3 mortgage-calculator view <mortgage name>
+```
+
+### View All Mortgages
+
+Prints brief information on all the mortgages stored in the data/mortgages folder. 
+
+```
+python3 mortgage-calculator viewall
+```
 
 1. Generate a Payment Plan, based on a Time input (**Inputs**: *Mortgage name*).
     1. Ask the user for an intended time to pay the loan, and calculate a monthly payment plan.
