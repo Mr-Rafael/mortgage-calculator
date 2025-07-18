@@ -1,26 +1,34 @@
 from file_utils import *
+from dataclasses import dataclass
+from decimal import Decimal
 
+@dataclass
 class Mortgage:
+    name: str
+    property_price: Decimal
+    down_payment: Decimal
+    interest_rate: Decimal
+
     def __init__(self, name):
         self.name = name
-        self.property_price = 0
-        self.down_payment = 0
-        self.interest_rate = 0
+        self.property_price = Decimal("0")
+        self.down_payment = Decimal("0")
+        self.interest_rate = Decimal("0")
 
     def set_property_price(self, price):
-        self.property_price = price
+        self.property_price = Decimal(price)
 
     def set_down_payment(self, payment):
-        self.down_payment = payment
+        self.down_payment = Decimal(payment)
 
     def set_interest_rate(self, rate):
-        self.interest_rate = rate
+        self.interest_rate = Decimal(rate)
 
     def save_to_file(self):
         files_directory = "../files"
         file_path = f"{files_directory}/{self.name}.mortgage.json"
         create_directory_if_nonexistent(files_directory)
-        write_file(file_path, "this is just a test file")
+        dump_json(file_path, self)
 
     def __repr__(self):
         return f'''

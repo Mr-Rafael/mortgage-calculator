@@ -25,7 +25,7 @@ And the program will ask you the necessary information (name, total amount, down
 Edit the data of a Mortgage. Run:
 
 ```
-python3 mortgage-calculator <mortgage name>
+python3 mortgage-calculator edit <mortgage name>
 ```
 
 The program will run you through all the fields. You can either enter a new value to update it, or just press enter to leave it as it is.

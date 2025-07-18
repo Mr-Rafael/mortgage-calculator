@@ -2,15 +2,12 @@ import argparse
 from mortgage import Mortgage
 
 def main():
-    print(f"Starting the program.")
     parser = argparse.ArgumentParser(description="Mortgage Calculator")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     create_parser = subparsers.add_parser("create", help="Create a new mortgage")
 
-    print(f"parsing the arguments")
     args = parser.parse_args()
-    print(f"finished parsing the arguments")
 
     if args.command == "create":
         create_new_mortgage()
