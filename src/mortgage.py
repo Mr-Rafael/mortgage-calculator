@@ -15,6 +15,12 @@ class Mortgage:
         self.down_payment = Decimal("0")
         self.interest_rate = Decimal("0")
 
+    def __init__(self, name, property_price, down_payment, interest_rate):
+        self.name = name
+        self.property_price = Decimal(property_price)
+        self.down_payment = Decimal(down_payment)
+        self.interest_rate = Decimal(interest_rate)
+
     def set_property_price(self, price):
         self.property_price = Decimal(price)
 
@@ -37,3 +43,8 @@ class Mortgage:
         \nDown Payment: {self.down_payment}
         \nInterest Rate: {self.interest_rate}
         '''
+
+def get_data_from_file(mortgage_name):
+    with open(f"../files/{mortgage_name}.mortgage.json", "r") as f:
+        data = json.load(f)
+        return Mortgage(**data)
