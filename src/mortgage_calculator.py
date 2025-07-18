@@ -9,6 +9,9 @@ def main():
 
     edit_parser = subparsers.add_parser("edit", help="Modify an existing mortgage")
     edit_parser.add_argument("--name", type=str, required=True, help="The name of the mortgage to edit")
+    
+    view_parser = subparsers.add_parser("view", help="View information on an existing mortgage")
+    view_parser.add_argument("--name", type=str, required=True, help="The name of the mortgage to view")
 
     args = parser.parse_args()
     
@@ -16,6 +19,8 @@ def main():
         create_new_mortgage()
     elif args.command == "edit":
         edit_mortgage(args.name)
+    elif args.command == "view":
+        view_mortgage(args.name)
         
 def create_new_mortgage():
     name = input("Please enter a name for the mortgage: ")
@@ -43,6 +48,9 @@ def edit_mortgage(name):
         current_mortgage.set_interest_rate(user_input)
     current_mortgage.save_to_file()
     print(f"\nSuccessfully updated the mortgage to: {current_mortgage}")
-    
+
+def view_mortgage(name):
+    current_mortgage = get_data_from_file(name)
+    print(f"Viewing Mortgage '{name}'{current_mortgage}")
 
 main()
