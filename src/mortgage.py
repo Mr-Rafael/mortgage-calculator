@@ -22,13 +22,22 @@ class Mortgage:
         self.interest_rate = Decimal(interest_rate)
 
     def set_property_price(self, price):
-        self.property_price = Decimal(price)
+        try:
+            self.property_price = Decimal(price)
+        except:
+            raise Exception("The property price must be a Decimal number.")
 
     def set_down_payment(self, payment):
-        self.down_payment = Decimal(payment)
+        try:
+            self.down_payment = Decimal(payment)
+        except:
+            raise Exception("The down payment must be a Decimal number.")
 
     def set_interest_rate(self, rate):
-        self.interest_rate = Decimal(rate)
+        try:
+            self.interest_rate = Decimal(rate)
+        except:
+            raise Exception("The interest rate must be a Decimal number.")
 
     def save_to_file(self):
         files_directory = "../files"
