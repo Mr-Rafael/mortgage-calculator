@@ -57,3 +57,6 @@ def get_data_from_file(mortgage_name):
     with open(f"../files/{mortgage_name}.mortgage.json", "r") as f:
         data = json.load(f)
         return Mortgage(**data)
+
+def get_all_mortgage_files():
+    return get_all_files_in_directory("../files")

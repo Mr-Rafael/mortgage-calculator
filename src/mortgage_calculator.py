@@ -1,5 +1,5 @@
 import argparse
-from mortgage import Mortgage, get_data_from_file
+from mortgage import Mortgage, get_data_from_file, get_all_mortgage_files
 
 def main():
     parser = argparse.ArgumentParser(description="Mortgage Calculator")
@@ -13,6 +13,8 @@ def main():
     view_parser = subparsers.add_parser("view", help="View information on an existing mortgage")
     view_parser.add_argument("--name", type=str, required=True, help="The name of the mortgage to view")
 
+    viewall_parser = subparsers.add_parser("viewall", help="View information on all saved mortgages")
+
     args = parser.parse_args()
     
     if args.command == "create":
@@ -21,6 +23,8 @@ def main():
         edit_mortgage(args.name)
     elif args.command == "view":
         view_mortgage(args.name)
+    elif args.command == "viewall":
+        view_all_mortgages()
         
 def create_new_mortgage():
     name = input("Please enter a name for the mortgage: ")
@@ -52,5 +56,16 @@ def edit_mortgage(name):
 def view_mortgage(name):
     current_mortgage = get_data_from_file(name)
     print(f"Viewing Mortgage '{name}'{current_mortgage}")
+
+def view_all_mortgages():
+    print(f"Looking for mortgages in the files directory...")
+    mortgage_files_list = get_all_mortgage_files()
+    print(f"Found the following saved mortgages:\n{list_to_string(mortgage_files_list)}")
+
+def list_to_string(list_to_print):
+    return_string = ""
+    for element in list_to_print:
+        return_string += f"\n- {element}"
+    return return_string
 
 main()

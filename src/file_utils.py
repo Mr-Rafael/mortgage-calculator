@@ -21,6 +21,15 @@ def dump_json(full_file_path, object):
     with open(full_file_path, "w") as f:
         json.dump(asdict(object), f, indent=4, cls=DecimalEncoder)
 
+def get_all_files_in_directory(directory):
+    files_list = os.listdir(directory)
+    mortgage_files = []
+    for file in files_list:
+        full_path = os.path.join(directory, file)
+        if os.path.isfile(full_path) and full_path.endswith(".mortgage.json"):
+            mortgage_files.append(file.split(".")[0])
+    return mortgage_files
+
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Decimal):
