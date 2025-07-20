@@ -52,11 +52,19 @@ class Mortgage:
         \nDown Payment: {self.down_payment}
         \nInterest Rate: {self.interest_rate}
         '''
+    def get_short_form_string(self):
+        return f"Mortgage '{self.name}' | Value: {self.property_price}"
 
 def get_data_from_file(mortgage_name):
     with open(f"../files/{mortgage_name}.mortgage.json", "r") as f:
         data = json.load(f)
         return Mortgage(**data)
 
-def get_all_mortgage_files():
-    return get_all_files_in_directory("../files")
+def read_all_mortgage_files():
+    read_mortgages = []
+    file_paths = get_all_mortgage_files_in_directory("../files")
+    for file_path in file_paths:
+        with open(file_path, "r") as f:
+            data = json.load(f)
+            read_mortgages.append(Mortgage(**data))
+    return read_mortgages

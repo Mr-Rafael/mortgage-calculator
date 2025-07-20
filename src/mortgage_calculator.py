@@ -1,5 +1,5 @@
 import argparse
-from mortgage import Mortgage, get_data_from_file, get_all_mortgage_files
+from mortgage import Mortgage, get_data_from_file, read_all_mortgage_files
 
 def main():
     parser = argparse.ArgumentParser(description="Mortgage Calculator")
@@ -59,8 +59,10 @@ def view_mortgage(name):
 
 def view_all_mortgages():
     print(f"Looking for mortgages in the files directory...")
-    mortgage_files_list = get_all_mortgage_files()
-    print(f"Found the following saved mortgages:\n{list_to_string(mortgage_files_list)}")
+    mortgage_list = read_all_mortgage_files()
+    print(f"\nFound the following saved mortgages:\n")
+    for mortgage in mortgage_list:
+        print(f"- {mortgage.get_short_form_string()}")
 
 def list_to_string(list_to_print):
     return_string = ""
