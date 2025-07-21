@@ -27,7 +27,6 @@ def get_all_mortgage_files_in_directory(directory):
     for file in files_list:
         full_path = os.path.join(directory, file)
         if os.path.isfile(full_path) and full_path.endswith(".mortgage.json"):
-            print(f"adding the path {full_path} to the list")
             mortgage_files.append(full_path)
     return mortgage_files
 

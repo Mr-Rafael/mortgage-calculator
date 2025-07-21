@@ -46,15 +46,23 @@ Prints brief information on all the mortgages stored in the data/mortgages folde
 python3 mortgage-calculator viewall
 ```
 
-1. Generate a Payment Plan, based on a Time input (**Inputs**: *Mortgage name*).
-    1. Ask the user for an intended time to pay the loan, and calculate a monthly payment plan.
-    1. Ask the user for a name to save the plan.
-    1. If already exists, ask the user if it should be overwritten.
+### Generate a Payment Plan
 
-1. Generate a Payment Plan, based on a Monthly amount.
-    1. Ask the user for an intended monthly amount, then generate a payment plan and the duration of the loan.
-    1. Outputs: csv with all the payments, amount of payments, length of time and interest paid.
-    1. Should have some sort of safeguard if the user enters an amout that would take too long to pay. Don't allow loans longer than 50 years.
+Payment plans are level payment plans (the same amount every month), generated based on a previously saved mortgage. They can be based on:
+
+- A payment term. For example, "I want to pay the mortgage in **20 years**".
+- A payment amount. For example, "I want to make payments of **1,000 monthly**".
+
+Generate a plan with for a mortgage:
+
+```
+python3 mortgage_calculator generate-payment-plan --mortgage <mortgage name>
+```
+
+The program will prompt you for all the necessary information (whether the plan is based on term or amount, insurance payments, etc.)
+
+The payment plan will be stored in CSV format in the *files* folder with the payment plan. The payment plan details (term, monthly payment, etc.) will also be stored. This can later be used to make modifications on the payment plans.
+
 
 1. Add one or several capital payments to a plan (**Input**: *Plan name*).
     1. With an already generated plan, the user can insert extraordinary capital payments on specific dates.

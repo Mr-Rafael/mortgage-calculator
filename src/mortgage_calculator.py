@@ -15,6 +15,9 @@ def main():
 
     viewall_parser = subparsers.add_parser("viewall", help="View information on all saved mortgages")
 
+    generate_plan_parser = subparsers.add_parser("generate-payment-plan", help="Generate a payment plan based on a Mortgage")
+    generate_plan_parser.add_argument("--name", type=str, required=True, help="The name of the mortgage used to generate the plan")
+
     args = parser.parse_args()
     
     if args.command == "create":
@@ -25,6 +28,8 @@ def main():
         view_mortgage(args.name)
     elif args.command == "viewall":
         view_all_mortgages()
+    elif args.command == "generate-payment-plan":
+        generate_payment_plan(args.name)
         
 def create_new_mortgage():
     name = input("Please enter a name for the mortgage: ")
@@ -63,6 +68,10 @@ def view_all_mortgages():
     print(f"\nFound the following saved mortgages:\n")
     for mortgage in mortgage_list:
         print(f"- {mortgage.get_short_form_string()}")
+    print("")
+
+def generate_payment_plan(mortgage_name):
+    name = input("Please enter a name for the payment plan:")
 
 def list_to_string(list_to_print):
     return_string = ""
