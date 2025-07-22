@@ -1,5 +1,6 @@
 import argparse
 from mortgage import Mortgage, get_data_from_file, read_all_mortgage_files
+from payment_plan import PaymentPlan
 
 def main():
     parser = argparse.ArgumentParser(description="Mortgage Calculator")
@@ -72,6 +73,18 @@ def view_all_mortgages():
 
 def generate_payment_plan(mortgage_name):
     name = input("Please enter a name for the payment plan:")
+    new_plan = PaymentPlan(name, mortgage_name)
+    user_input = input("Do you wish to generate a plan from a set Term (enter 'term'), or from a set Monthly Payment (enter 'payment')?:")
+    if (user_input.lower() == "term"):
+        term_input = input("Please enter the term (in years) in which you wish to pay the loan:")
+        new_plan.set_term(term_input)
+    elif (user_input.lower() == "payment"):
+        payment_input = input("Please enter the monthly amount you wish to pay:")
+        new_plan.set_monthly_payment(payment_input)
+    else:
+        print(f"Invalid option: '{user_input}'. Please enter 'term' or 'payment'")
+        exit(1)
+    
 
 def list_to_string(list_to_print):
     return_string = ""
