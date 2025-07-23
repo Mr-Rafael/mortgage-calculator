@@ -31,3 +31,12 @@ class PaymentPlan:
         file_path = f"{files_directory}/{self.name}.plan.json"
         create_directory_if_nonexistent(files_directory)
         dump_json(file_path, self)
+
+    def generate_payment_plan(self):
+        self.calculate_missing_value()
+
+    def calculate_missing_value(self):
+        if (self.term != Decimal("0") and self.monthly_payment == Decimal("0")):
+            print(f"Calculating the term from the payment amount.")
+        elif (self.term == Decimal("0") and self.monthly_payment != Decimal("0")):
+            print(f"Calculating the monthly payment from the term.")

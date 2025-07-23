@@ -17,7 +17,7 @@ def main():
     viewall_parser = subparsers.add_parser("viewall", help="View information on all saved mortgages")
 
     generate_plan_parser = subparsers.add_parser("generate-payment-plan", help="Generate a payment plan based on a Mortgage")
-    generate_plan_parser.add_argument("--name", type=str, required=True, help="The name of the mortgage used to generate the plan")
+    generate_plan_parser.add_argument("--mortgage", type=str, required=True, help="The name of the mortgage used to generate the plan")
 
     args = parser.parse_args()
     
@@ -30,7 +30,7 @@ def main():
     elif args.command == "viewall":
         view_all_mortgages()
     elif args.command == "generate-payment-plan":
-        generate_payment_plan(args.name)
+        generate_payment_plan(args.mortgage)
         
 def create_new_mortgage():
     name = input("Please enter a name for the mortgage: ")
@@ -84,7 +84,11 @@ def generate_payment_plan(mortgage_name):
     else:
         print(f"Invalid option: '{user_input}'. Please enter 'term' or 'payment'")
         exit(1)
-    
+    user_input = input("Do your monthly payments include additional costs like insurance? Please enter the total of these costs (escrow payments):")
+    new_plan.set_escrow_payment(user_input)
+    new_plan.save_to_file()
+    print(f"Successfully saved the payment plan data to: /files/{name}.plan.json")
+    print(f"Generating the payment plan...")
 
 def list_to_string(list_to_print):
     return_string = ""
