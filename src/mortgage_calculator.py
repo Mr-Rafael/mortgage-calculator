@@ -86,6 +86,7 @@ def generate_payment_plan(mortgage_name):
         exit(1)
     user_input = input("Do your monthly payments include additional costs like insurance? Please enter the total of these costs (escrow payments):")
     new_plan.set_escrow_payment(user_input)
+    new_plan.generate_payment_plan()
     new_plan.save_to_file()
     print(f"Successfully saved the payment plan data to: /files/{name}.plan.json")
     print(f"Generating the payment plan...")

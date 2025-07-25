@@ -4,7 +4,6 @@ from dataclasses import asdict
 from decimal import Decimal
 
 def create_directory_if_nonexistent(path):
-    print(f"received path {path}")
     split_path = path.split("/")
     current_path = ""
     for section in split_path:

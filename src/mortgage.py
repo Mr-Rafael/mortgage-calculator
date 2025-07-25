@@ -56,7 +56,7 @@ def get_data_from_file(mortgage_name):
 
 def validate_mortgage_file(mortgage_name):
     try:
-        get_data_from_file
+        get_data_from_file(mortgage_name)
     except Exception as error:
         print(f"Error! The mortgage you entered ({mortgage_name}) couldn't be found. Error message: {error}")
 
