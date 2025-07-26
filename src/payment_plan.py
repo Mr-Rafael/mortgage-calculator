@@ -10,6 +10,9 @@ class PaymentPlan:
     term_in_months: int
     monthly_payment: Decimal
     escrow_payment: Decimal
+    total_paid_amount: Decimal
+    total_escrow_paid: Decimal
+    total_interest_paid: Decimal
 
     def __init__(self, name, source_mortgage, term=0, payment=Decimal("0"), escrow=Decimal("0")):
         self.name = name
@@ -17,6 +20,9 @@ class PaymentPlan:
         self.term_in_months = term
         self.monthly_payment = payment
         self.escrow_payment = escrow
+        self.total_paid_amount = Decimal(0)
+        self.total_escrow_paid = Decimal(0)
+        self.total_interest_paid = Decimal(0)
 
     def set_term(self, term):
         self.term_in_months = int(term) * 12
@@ -36,6 +42,12 @@ class PaymentPlan:
     def generate_payment_plan(self):
         mortgage_data = get_data_from_file(self.source_mortgage)
         self.calculate_missing_value(mortgage_data)
+        self.calculate_totals(mortgage_data)
+
+    def calculate_totals(self, mortgage_data):
+        self.total_paid_amount = self.monthly_payment * self.term_in_months
+        self.total_escrow_paid = self.escrow_payment * self.term_in_months
+        self.total_interest_paid = self.total_paid_amount - mortgage_data.property_price - self.total_escrow_paid
 
     def calculate_missing_value(self, mortgage_data):
         if (self.term_in_months == Decimal(0) and self.monthly_payment != Decimal(0)):
@@ -64,4 +76,4 @@ class PaymentPlan:
         calculation_divisor = Decimal.log10(1 + monthly_interest_rate)
         number_of_payments = round((calculation_dividend / calculation_divisor), 0)
         print(f"The loan will be paid in {number_of_payments} months, or {round(number_of_payments / 12, 2)} years.")
-        return number_of_payments
+        return int(number_of_payments)
