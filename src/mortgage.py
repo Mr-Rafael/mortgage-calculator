@@ -29,7 +29,7 @@ class Mortgage:
 
     def set_interest_rate(self, rate):
         try:
-            self.interest_rate = Decimal(rate)
+            self.interest_rate = Decimal(rate) / Decimal(100)
         except:
             raise Exception("The interest rate must be a Decimal number.")
 

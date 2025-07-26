@@ -37,7 +37,7 @@ def create_new_mortgage():
     new_mortgage = Mortgage(name)
     new_mortgage.set_property_price(input("Please enter the property's price: "))
     new_mortgage.set_down_payment(input("Please enter the down payment: "))
-    new_mortgage.set_interest_rate(input("Please enter the interest rate: "))
+    new_mortgage.set_interest_rate(input("Please enter the interest rate (in percent, like 5%): "))
     new_mortgage.save_to_file()
     print(f"\nSuccessfully created a new mortgage: {new_mortgage}")
 
@@ -74,7 +74,8 @@ def view_all_mortgages():
 def generate_payment_plan(mortgage_name):
     name = input("Please enter a name for the payment plan:")
     new_plan = PaymentPlan(name, mortgage_name)
-    user_input = input("Do you wish to generate a plan from a set Term (enter 'term'), or from a set Monthly Payment (enter 'payment')?:")
+    print(f"You can generate a plan based on a set TERM, or from a set MONTHLY PAYMENT")
+    user_input = input("Enter 'term' or 'payment' depending on what you need:")
     if (user_input.lower() == "term"):
         term_input = input("Please enter the term (in years) in which you wish to pay the loan:")
         new_plan.set_term(term_input)
