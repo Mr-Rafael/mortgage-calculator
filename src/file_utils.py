@@ -1,5 +1,6 @@
 import os
 import json
+import csv
 from dataclasses import asdict
 from decimal import Decimal
 
@@ -19,6 +20,11 @@ def write_file(full_file_path, content):
 def dump_json(full_file_path, object):
     with open(full_file_path, "w") as f:
         json.dump(asdict(object), f, indent=4, cls=DecimalEncoder)
+
+def dump_csv(full_file_path, data):
+    with open(full_file_path, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',')
+        csv_writer.writerows(data)
 
 def get_all_mortgage_files_in_directory(directory):
     files_list = os.listdir(directory)

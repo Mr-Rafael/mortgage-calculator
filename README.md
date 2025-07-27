@@ -53,7 +53,7 @@ Payment plans are level payment plans (the same amount every month), generated b
 - A payment term. For example, "I want to pay the mortgage in **20 years**".
 - A payment amount. For example, "I want to make payments of **1,000 monthly**".
 
-Generate a plan with for a mortgage:
+Generate a plan from a mortgage:
 
 ```
 python3 mortgage_calculator generate-payment-plan --mortgage <mortgage name>
@@ -61,14 +61,10 @@ python3 mortgage_calculator generate-payment-plan --mortgage <mortgage name>
 
 The program will prompt you for all the necessary information (whether the plan is based on term or amount, insurance payments, etc.)
 
-The payment plan will be stored in CSV format in the *files* folder with the payment plan. The payment plan details (term, monthly payment, etc.) will also be stored. This can later be used to make modifications on the payment plans.
+The payment plan will be stored in CSV format in the *files* folder with the payment plan. The payment plan details (term, monthly payment, etc.) will also be stored in JSON format. This can later be used to make modifications on the payment plans.
 
+### Add Extraordinary Paydowns
 
-1. Add one or several capital payments to a plan (**Input**: *Plan name*).
-    1. With an already generated plan, the user can insert extraordinary capital payments on specific dates.
-    1. The program must re-calculate the payment plan from the Capital Payment onwards, and recalculate all the outputs.
-    1. User is prompted to either save this new plan in a new file, or overwrite the existing one.
-    1. User is prompted to insert more capital payments, or finish.
+Work In Progress
 
-1. Integrity check: Open a Plan and check if it makes sense. If it has been edited or something doesn't make sense, recalculate the plan from that point onwards.
-
+Will allow you to add extraordinary paydowns to an existing Payment Plan. This will allow you to see how much the term shortens, how the interest paid is reduced, etc.
